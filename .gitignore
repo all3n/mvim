@@ -44,3 +44,6 @@ luac.out
 /venv
 /data
 /cache
+
+
+conf/nvim/plugin/packer_compiled.lua
