@@ -1,0 +1,20 @@
+APP_DIR=$(cd $(dirname $0)/..;pwd)
+
+fix_glibc(){
+    $APP_DIR/bin/patchelf --set-interpreter $APP_DIR/opt/glibc-2.18/lib/ld-linux-x86-64.so.2 --set-rpath $APP_DIR/opt/glibc-2.18/lib:$APP_DIR/opt/libs $1
+}
+
+
+T=$1
+if [[ -f $T ]];then
+    fix_glibc $T
+elif [[ -d $T ]];then
+    for i in $(ls $T);do
+        if [[ -L $T/$i ]];then
+            echo "$i skip"
+        elif [[ -f $T/$i ]];then
+            fix_glibc $T/$i
+        fi
+    done
+fi
+

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+export NVIM_HOME=$(cd $(dirname $0)/..;pwd)
+# init.vim nvim config dir
+SETUP_DONE=$NVIM_HOME/.setup
+if [[ ! -f $SETUP_DONE ]];then
+  echo "try setup"
+  bash $NVIM_HOME/bin/setup.sh
+  touch $SETUP_DONE
+fi
+
+export XDG_CONFIG_HOME=$NVIM_HOME/conf
+export XDG_DATA_HOME=$NVIM_HOME/data
+export XDG_STATE_HOME=$NVIM_HOME/state
+export XDG_RUNTIME_HOME=$NVIM_HOME/runtime
+export XDG_CACHE_HOME=$NVIM_HOME/cache
+. $NVIM_HOME/venv/bin/activate
+
+$NVIM_HOME/bin/nvim83 $@
