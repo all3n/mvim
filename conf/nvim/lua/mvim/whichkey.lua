@@ -85,6 +85,8 @@ local mappings = {
     "Buffers"},
     n = {"<cmd>BufferLineCycleNext<CR>", "buffer_next"},
     p = {"<cmd>BufferLineCyclePrev<CR>", "buffer_pre"},
+    c = {"<cmd>BufferLinePick<CR>", "buffer_pick"},
+    tp = {"<cmd>BufferLineTogglePin<CR>", "buffer_toggle_pin"},
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
