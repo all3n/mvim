@@ -47,3 +47,5 @@ luac.out
 
 
 conf/nvim/plugin/packer_compiled.lua
+conf/TabNine
+conf/pulse

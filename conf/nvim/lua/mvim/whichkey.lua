@@ -183,6 +183,7 @@ local mappings = {
     t = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Bottom" },
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+    b = { "<cmd>TagBar<cr>", "TagBar"}
   },
   r = {
     name = "+Run",
