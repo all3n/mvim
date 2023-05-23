@@ -1,5 +1,6 @@
 require "mvim.options"
 require "mvim.keymaps"
+
 require "mvim.plugins"
 require "mvim.colorscheme"
 require "mvim.cmp"

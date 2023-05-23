@@ -1,5 +1,4 @@
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
+local status_ok, nvim_tree = pcall(require, "nvim-tree") if not status_ok then
   return
 end
 
@@ -71,5 +70,5 @@ nvim_tree.setup {
     width = 30,
     side = "left",
   },
-  on_attach = on_attach
+  -- on_attach = on_attach
 }

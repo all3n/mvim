@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export NVIM_HOME=$(cd $(dirname $0)/..;pwd)
+export NVIM_HOME=$(cd $(dirname $(realpath $0))/..;pwd)
 . $NVIM_HOME/bin/functions.sh
 # init.vim nvim config dir
 SETUP_DONE=$NVIM_HOME/.setup
@@ -8,6 +8,12 @@ if [[ ! -f $SETUP_DONE ]];then
   bash $NVIM_HOME/bin/setup.sh
   touch $SETUP_DONE
 fi
+
+MY_CONFIG=$HOME/.config/mvim/config.sh
+if [[ -f $MY_CONFIG ]];then
+    . $MY_CONFIG
+fi
+
 
 export XDG_CONFIG_HOME=$NVIM_HOME/conf
 export XDG_DATA_HOME=$NVIM_HOME/data

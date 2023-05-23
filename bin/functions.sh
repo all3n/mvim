@@ -1,3 +1,4 @@
+: ${NVIM_BIN:=}
 LINUX_NVIM=$NVIM_HOME/bin/nvim83
 MAC_NVIM=nvim
 
@@ -12,7 +13,9 @@ function get_os(){
 
 function get_nvim(){
     local OS=$(get_os)
-    if [[ "$OS" == "MAC" ]];then
+    if [[ -n "${NVIM_BIN}" ]];then
+        echo "$NVIM_BIN"
+    elif [[ "$OS" == "MAC" ]];then
         echo "$MAC_NVIM"
     else
         echo "$LINUX_NVIM"
