@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
-export NVIM_HOME=$(cd $(dirname $(realpath $0))/..;pwd)
+get_real_path() {
+  local path="$1"
+  local dir="$(dirname "$path")"
+  local name="$(basename "$path")"
+  local real_path=""
+  cd "$dir" || return 1
+  while [ -L "$name" ]; do
+    name="$(readlink "$name")"
+    cd "$(dirname "$name")" || return 1
+    real_path="$(pwd -P)/$(basename "$name")"
+    name="$(basename "$real_path")"
+  done
+  real_path="$(pwd -P)/$name"
+  echo "$real_path"
+}
+
+export NVIM_HOME=$(cd $(dirname $(get_real_path $0))/..;pwd)
 . $NVIM_HOME/bin/functions.sh
 # init.vim nvim config dir
 SETUP_DONE=$NVIM_HOME/.setup
