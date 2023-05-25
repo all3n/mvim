@@ -32,11 +32,22 @@ fi
 
 
 export XDG_CONFIG_HOME=$NVIM_HOME/conf
-export XDG_DATA_HOME=$NVIM_HOME/data
-export XDG_STATE_HOME=$NVIM_HOME/state
-export XDG_RUNTIME_HOME=$NVIM_HOME/runtime
-export XDG_CACHE_HOME=$NVIM_HOME/cache
-. $NVIM_HOME/venv/bin/activate
+
+MVIM_DATA_DIR=$HOME/.mvim
+mkdir -p $MVIM_DATA_DIR
+export XDG_DATA_HOME=$MVIM_DATA_DIR/data
+export XDG_STATE_HOME=$MVIM_DATA_DIR/state
+export XDG_RUNTIME_HOME=$MVIM_DATA_DIR/runtime
+export XDG_CACHE_HOME=$MVIM_DATA_DIR/cache
+
+if [[ ! -d $MVIM_DATA_DIR/venv ]];then
+    python3 -m venv $MVIM_DATA_DIR/venv
+    . $MVIM_DATA_DIR/venv/bin/activate
+    pip install --upgrade pip
+    pip install neovim
+else
+    . $MVIM_DATA_DIR/venv/bin/activate
+fi
 
 NVIM=$(get_nvim)
 

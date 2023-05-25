@@ -4,13 +4,13 @@ if not status_ok then
 end
 local dashboard = require("alpha.themes.dashboard")
 dashboard.section.header.val = {
-  [[##     ## ##    ## ##     ## #### ##     ##]], 
-  [[###   ###  ##  ##  ##     ##  ##  ###   ###]], 
-  [[#### ####   ####   ##     ##  ##  #### ####]], 
-  [[## ### ##    ##    ##     ##  ##  ## ### ##]], 
-  [[##     ##    ##     ##   ##   ##  ##     ##]], 
-  [[##     ##    ##      ## ##    ##  ##     ##]], 
-  [[##     ##    ##       ###    #### ##     ##]],
+  [[##     ##  ##     ## #### ##     ##]], 
+  [[###   ###  ##     ##  ##  ###   ###]], 
+  [[#### ####  ##     ##  ##  #### ####]], 
+  [[## ### ##  ##     ##  ##  ## ### ##]], 
+  [[##     ##   ##   ##   ##  ##     ##]], 
+  [[##     ##    ## ##    ##  ##     ##]], 
+  [[##     ##     ###    #### ##     ##]],
 }
 dashboard.section.buttons.val = {
 	dashboard.button("f", "󰈞  Find file", ":Telescope find_files <CR>"),
@@ -19,7 +19,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("r", " Recently used files", ":Telescope oldfiles <CR>"),
 	dashboard.button("t", "󰮗 Find text", ":Telescope live_grep <CR>"),
 	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
-	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+	dashboard.button("q", "  Quit MVIM", ":qa<CR>"),
 }
 
 local function footer()

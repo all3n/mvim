@@ -74,9 +74,9 @@ return packer.startup(function(use)
   end}
   -- profile only < 0.9
   -- for 0.9 vim.loader.enable()
-  use { "lewis6991/impatient.nvim" , config = function()
-    require "mvim.plugins.impatient"
-  end}
+  --  use { "lewis6991/impatient.nvim" , config = function()
+  --    require "mvim.plugins.impatient"
+  --  end}
   use { "lukas-reineke/indent-blankline.nvim", config = function()
     require "mvim.plugins.indentline"
   end}
@@ -114,7 +114,7 @@ return packer.startup(function(use)
   end}
 
 	-- Treesitter
-	use {"all3n/nvim-treesitter", config = function()
+	use {"nvim-treesitter/nvim-treesitter", config = function()
     require "mvim.plugins.treesitter"
   end}
 
