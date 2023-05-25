@@ -1,9 +1,10 @@
 require "mvim.options"
 require "mvim.keymaps"
-
 require "mvim.plugins"
 require "mvim.colorscheme"
 require "mvim.cmp"
+
+-- plugins config start
 require "mvim.lsp"
 require "mvim.telescope"
 require "mvim.gitsigns"
