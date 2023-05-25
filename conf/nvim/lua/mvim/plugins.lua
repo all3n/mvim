@@ -27,7 +27,6 @@ local status_ok, packer = pcall(require, "packer")
 if not status_ok then
 	return
 end
-
 -- Have packer use a popup window
 packer.init({
 	display = {
@@ -39,24 +38,52 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
+  -- pack manager
   use { "wbthomason/packer.nvim" }
-  use { "nvim-lua/plenary.nvim" }
-  use { "windwp/nvim-autopairs" }
-  use { "numToStr/Comment.nvim" }
+  -- welcome greeter plugin
+  use { "goolord/alpha-nvim" , config = function()
+    require "mvim.plugins.alpha"
+  end
+  }
+  -- tree plugin
+  use { "nvim-tree/nvim-tree.lua", requires = {"nvim-tree/nvim-web-devicons"},  config = function()
+    require "mvim.plugins.nvim-tree"
+  end
+  }
+  use { "windwp/nvim-autopairs" , config = function()
+    require "mvim.plugins.autopairs"
+  end}
+  use { "numToStr/Comment.nvim", config = function()
+    require "mvim.plugins.comment"
+  end}
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
-  -- use { "kyazdani42/nvim-web-devicons" }
-  -- use { "kyazdani42/nvim-tree.lua" }
-  use { "nvim-tree/nvim-tree.lua" }
-  use { "nvim-tree/nvim-web-devicons" }
-  use { "akinsho/bufferline.nvim" }
+  use { "akinsho/bufferline.nvim", config = function()
+    require "mvim.plugins.bufferline"
+  end}
+  -- delete buffer without closing your windows or messing up your layout
 	use { "moll/vim-bbye" }
-  use { "nvim-lualine/lualine.nvim" }
-  use { "akinsho/toggleterm.nvim" }
-  use { "ahmedkhalf/project.nvim" }
-  use { "lewis6991/impatient.nvim" }
-  use { "lukas-reineke/indent-blankline.nvim" }
-  use { "goolord/alpha-nvim" }
-	use {"folke/which-key.nvim"}
+  use { "nvim-lualine/lualine.nvim" , config = function()
+    require "mvim.plugins.lualine"
+  end}
+  use { "akinsho/toggleterm.nvim" , config = function()
+    require "mvim.plugins.toggleterm"
+  end}
+  -- project manage
+  use { "ahmedkhalf/project.nvim" , config = function()
+    require "mvim.plugins.project"
+  end}
+  -- profile only < 0.9
+  -- for 0.9 vim.loader.enable()
+  use { "lewis6991/impatient.nvim" , config = function()
+    require "mvim.plugins.impatient"
+  end}
+  use { "lukas-reineke/indent-blankline.nvim", config = function()
+    require "mvim.plugins.indentline"
+  end}
+  -- popup key-binding
+	use {"folke/which-key.nvim", config = function()
+    require "mvim.plugins.whichkey"
+  end}
 
 	-- Colorschemes
   use { "folke/tokyonight.nvim" }
@@ -81,15 +108,22 @@ return packer.startup(function(use)
 	use { "jose-elias-alvarez/null-ls.nvim"}
   use { "RRethy/vim-illuminate"}
 
-	-- Telescope
-	use { "nvim-telescope/telescope.nvim"}
+	-- Telescope 0.1.1 nvim < 0.9
+	use { "nvim-telescope/telescope.nvim", requires = { {'nvim-lua/plenary.nvim'} }, tag = "0.1.1", config = function()
+    require "mvim.plugins.telescope"
+  end}
 
 	-- Treesitter
-	use {"all3n/nvim-treesitter"}
+	use {"all3n/nvim-treesitter", config = function()
+    require "mvim.plugins.treesitter"
+  end}
 
 	-- Git
-	use { "lewis6991/gitsigns.nvim"}
+	use { "lewis6991/gitsigns.nvim", config = function()
+    require "mvim.plugins.gitsigns"
+  end}
 
+  -- async task execution
   use {'skywind3000/asynctasks.vim'}
   use({
 		"skywind3000/asyncrun.vim",

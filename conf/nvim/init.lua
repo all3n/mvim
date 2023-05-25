@@ -1,24 +1,15 @@
+-- basic config
 require "mvim.options"
 require "mvim.keymaps"
 require "mvim.plugins"
 require "mvim.colorscheme"
-require "mvim.cmp"
-
--- plugins config start
-require "mvim.lsp"
-require "mvim.telescope"
-require "mvim.gitsigns"
-require "mvim.treesitter"
-require "mvim.autopairs"
-require "mvim.comment"
-require "mvim.nvim-tree"
-require "mvim.bufferline"
-require "mvim.lualine"
-require "mvim.toggleterm"
-require "mvim.project"
-require "mvim.impatient"
-require "mvim.indentline"
-require "mvim.alpha"
-require "mvim.whichkey"
 require "mvim.autocommands"
-require "mvim.config"
+-- plugins config start
+require "mvim.cmp"
+require "mvim.lsp"
+-- plugins config end
+require("mvim.bootstrap"):init()
+
+
+
+
