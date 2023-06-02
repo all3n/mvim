@@ -88,14 +88,17 @@ return packer.startup(function(use)
 	-- Colorschemes
   use { "folke/tokyonight.nvim" }
   use { "lunarvim/darkplus.nvim" }
-
 	-- Cmp 
+  use { "mfussenegger/nvim-fzy" }
   use { "hrsh7th/nvim-cmp" }
   use { "hrsh7th/cmp-buffer" }
   use { "hrsh7th/cmp-path" }
 	use { "saadparwaiz1/cmp_luasnip" }
 	use { "hrsh7th/cmp-nvim-lsp" }
 	use { "hrsh7th/cmp-nvim-lua" }
+
+  -- nvim-jdtls
+  use { "mfussenegger/nvim-jdtls"}
 
 	-- Snippets
   use { "L3MON4D3/LuaSnip"}

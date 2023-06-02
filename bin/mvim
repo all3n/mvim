@@ -1,54 +1,5 @@
 #!/usr/bin/env bash
-get_real_path() {
-  local path="$1"
-  local dir="$(dirname "$path")"
-  local name="$(basename "$path")"
-  local real_path=""
-  cd "$dir" || return 1
-  while [ -L "$name" ]; do
-    name="$(readlink "$name")"
-    cd "$(dirname "$name")" || return 1
-    real_path="$(pwd -P)/$(basename "$name")"
-    name="$(basename "$real_path")"
-  done
-  real_path="$(pwd -P)/$name"
-  echo "$real_path"
-}
-
-export NVIM_HOME=$(cd $(dirname $(get_real_path $0))/..;pwd)
-. $NVIM_HOME/bin/functions.sh
-# init.vim nvim config dir
-SETUP_DONE=$NVIM_HOME/.setup
-if [[ ! -f $SETUP_DONE ]];then
-  echo "try setup"
-  bash $NVIM_HOME/bin/setup.sh
-  touch $SETUP_DONE
-fi
-
-MY_CONFIG=$HOME/.config/mvim/config.sh
-if [[ -f $MY_CONFIG ]];then
-    . $MY_CONFIG
-fi
-
-
-export XDG_CONFIG_HOME=$NVIM_HOME/conf
-
-MVIM_DATA_DIR=$HOME/.mvim
-mkdir -p $MVIM_DATA_DIR
-export XDG_DATA_HOME=$MVIM_DATA_DIR/data
-export XDG_STATE_HOME=$MVIM_DATA_DIR/state
-export XDG_RUNTIME_HOME=$MVIM_DATA_DIR/runtime
-export XDG_CACHE_HOME=$MVIM_DATA_DIR/cache
-
-if [[ ! -d $MVIM_DATA_DIR/venv ]];then
-    python3 -m venv $MVIM_DATA_DIR/venv
-    . $MVIM_DATA_DIR/venv/bin/activate
-    pip install --upgrade pip
-    pip install neovim
-else
-    . $MVIM_DATA_DIR/venv/bin/activate
-fi
-
+export MVIM_HOME=$(cd $(dirname $0)/..;pwd)
+. $MVIM_HOME/bin/init.sh
 NVIM=$(get_nvim)
-
 $NVIM $@

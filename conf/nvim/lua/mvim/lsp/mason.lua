@@ -2,12 +2,13 @@ local servers = {
 	-- "sumneko_lua",
 	-- "cssls",
 	-- "html",
-	-- "tsserver",
+	"tsserver",
 	"pyright",
-	-- "bashls",
+	"bashls",
 	"jsonls",
-	-- "yamlls",
-  "clangd"
+	"yamlls",
+  "clangd",
+  -- "jdtls"
 }
 
 local settings = {
@@ -26,7 +27,7 @@ local settings = {
 require("mason").setup(settings)
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
-	automatic_installation = true,
+	automatic_installation = false,
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")

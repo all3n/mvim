@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+export MVIM_HOME=$(cd $(dirname $(get_real_path $0))/..;pwd)
+. $MVIM_HOME/bin/init.sh
+
+ACTION=$1
+FUNLIST=`typeset -f|grep " ()"|awk -F'setup_' '{print $2}'|awk '{print $1}'|grep -v "^$"`
+if [[ -z "$ACTION" ]];then
+    echo "$0 action"
+    echo "ACTION LIST:"
+    for FN in $FUNLIST;do
+        VAR_DESC="DESC_$FN"
+        printf "%20s\t%-30s\n" "$FN" "${!VAR_DESC}"
+    done
+    exit
+fi
+shift 1
+ACTIONS=`echo $ACTION|tr ',' ' '`
+
+for AN in ${ACTIONS[@]};do
+    echo "setup $AN"
+    eval "setup_$AN" $@
+done

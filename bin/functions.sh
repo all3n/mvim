@@ -1,7 +1,4 @@
 : ${NVIM_BIN:=}
-LINUX_NVIM=$NVIM_HOME/bin/nvim83
-MAC_NVIM=nvim
-
 
 function get_os(){
     if [[ "$(uname)" == "Darwin" ]];then
@@ -12,12 +9,26 @@ function get_os(){
 }
 
 function get_nvim(){
-    local OS=$(get_os)
-    if [[ -n "${NVIM_BIN}" ]];then
-        echo "$NVIM_BIN"
-    elif [[ "$OS" == "MAC" ]];then
-        echo "$MAC_NVIM"
-    else
-        echo "$LINUX_NVIM"
-    fi
+    echo "$NVIM_BIN"
+ }
+
+function get_real_path() {
+  local path="$1"
+  local dir="$(dirname "$path")"
+  local name="$(basename "$path")"
+  local real_path=""
+  cd "$dir" || return 1
+  while [ -L "$name" ]; do
+    name="$(readlink "$name")"
+    cd "$(dirname "$name")" || return 1
+    real_path="$(pwd -P)/$(basename "$name")"
+    name="$(basename "$real_path")"
+  done
+  real_path="$(pwd -P)/$name"
+  echo "$real_path"
+}
+
+function setup_venv(){
+    echo 1
+
 }
