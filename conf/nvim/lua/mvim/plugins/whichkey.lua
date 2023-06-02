@@ -89,17 +89,23 @@ local mappings = {
     tp = {"<cmd>BufferLineTogglePin<CR>", "buffer_toggle_pin"},
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["w"] = { "<cmd>w!<CR>", "Save" },
+  ["w"] = { "Workspace",
+    l = {"<cmd>Workspace LeftPanelToggle<CR>", "LeftPanelToggle"},
+    r = {"<cmd>Workspace RightPanelToggle<CR>", "RightPanelToggle"},
+    b = {"<cmd>Workspace BottomPanelToggle<CR>", "BottomPanelToggle"},
+  },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["f"] = {
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Find files",
+  ["f"] = { "Find", 
+    f = {
+      "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Find Files"
+    },
+    t = {
+      "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text"
+    }
   },
-  ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -188,27 +194,15 @@ local mappings = {
   r = {
     name = "+Run",
     l = { "<cmd>AsyncTaskList<cr>", "AsyncTaskList" },
-    p = { "<cmd>AsyncTaskProfile<cr>", "AsyncTaskProfile" },
+    P = { "<cmd>AsyncTaskProfile<cr>", "AsyncTaskProfile" },
     m = { "<cmd>AsyncTaskMacro<cr>", "AsyncTaskMacro" },
+    b = { "<cmd>AsyncTask file-build<cr>", "task:build" },
+    r = { "<cmd>AsyncTask file-run<cr>", "task:run" },
+    p = {"+Project",
+      b = { "<cmd>AsyncTask project-build<cr>", "task:project:build" },
+      r = { "<cmd>AsyncTask project-run<cr>", "task:project:run" },
+    }
   }
 }
-
-local task_file = vim.fn.stdpath("config") .. "/tasks"
-vim.g.asynctasks_term_pos = 'toggleterm2'
--- vim.g.asynctasks_term_pos = 'bottom'
--- for toggleterm
-vim.g.asyncrun_mode = 'term'
--- vim.g.asyncrun_mode = 'async' -- for quickfix
-
-vim.g.asyncrun_save = 1 -- 1 save current file  2 save modified save
-vim.g.asyncrun_open = 10
-vim.g.asynctasks_extra_config = {
-    task_file,
-}
-vim.api.nvim_set_keymap("", "<F5>", ":AsyncTask file-build<CR>", { noremap = true, silent = false })
-vim.api.nvim_set_keymap("", "<F6>", ":AsyncTask file-run<CR>", { noremap = true, silent = false })
-vim.api.nvim_set_keymap("", "<F7>", ":AsyncTask project-build<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", "<F8>", ":AsyncTask project-run<CR>", { noremap = true, silent = true })
-
 which_key.setup(setup)
 which_key.register(mappings, opts)

@@ -5,13 +5,15 @@ if [[ -f $MY_CONFIG ]];then
 fi
 
 export XDG_CONFIG_HOME=$MVIM_HOME/conf
+export TASKS_HOME=$MVIM_HOME/tasks
+
 MVIM_DATA_DIR=$HOME/.mvim
 mkdir -p $MVIM_DATA_DIR
 export XDG_DATA_HOME=$MVIM_DATA_DIR/data
 export XDG_STATE_HOME=$MVIM_DATA_DIR/state
 export XDG_RUNTIME_HOME=$MVIM_DATA_DIR/runtime
 export XDG_CACHE_HOME=$MVIM_DATA_DIR/cache
-
+export PATH=$TASKS_HOME:$PATH
 
 if [[ ! -d $MVIM_DATA_DIR/venv ]];then
     python3 -m venv $MVIM_DATA_DIR/venv

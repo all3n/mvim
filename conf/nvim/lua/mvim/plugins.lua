@@ -127,7 +127,9 @@ return packer.startup(function(use)
   end}
 
   -- async task execution
-  use {'skywind3000/asynctasks.vim'}
+  use {'skywind3000/asynctasks.vim', config = function()
+    require "mvim.plugins.async-tasks"
+  end}
   use({
 		"skywind3000/asyncrun.vim",
 		as = "asyncrun",
@@ -141,6 +143,12 @@ return packer.startup(function(use)
   -- use {'mfussenegger/nvim-jdtls'}
   -- use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
   use {"preservim/tagbar"}
+
+  use {
+    'ldelossa/nvim-ide', config = function()
+      require "mvim.plugins.nvim-ide"
+    end
+  }
 
 
 	-- Automatically set up your configuration after cloning packer.nvim
