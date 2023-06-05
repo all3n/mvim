@@ -30,5 +30,15 @@ function get_real_path() {
 
 function setup_venv(){
     echo 1
+}
 
+function get_temp_file_path() {
+    local temp_file_path=$(mktemp)
+    trap "rm -f $temp_file_path" EXIT
+    echo $temp_file_path
+}
+function get_temp_dir() {
+    local temp_file_path=$(mktemp -d)
+    trap "rm -rf $temp_file_path" EXIT
+    echo $temp_file_path
 }

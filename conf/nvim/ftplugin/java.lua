@@ -99,7 +99,30 @@ local config = {
   -- for a list of options
   settings = {
     java = {
+      eclipse = {
+        downloadSources = true,
+      },
+      maven = {
+        downloadSources = true,
+      },
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+      },
+      references = {
+        includeDecompiledSources = true,
+      },
+      format = {
+        enabled = true,
+        settings = {
+          url = vim.fn.stdpath "config" .. "/lang-servers/intellij-java-google-style.xml",
+          profile = "GoogleStyle",
+        },
+      },
       configuration = {
+        updateBuildConfiguration = "interactive",
         runtimes = {
           {name = "JavaSE-1.8", path= "/opt/jdk-8"},
           {name = "JavaSE-13", path= "/opt/jdk-13"},
@@ -107,6 +130,18 @@ local config = {
         }
       }
     }
+  },
+  signatureHelp = { enabled = true },
+  completion = {
+    favoriteStaticMembers = {
+      "org.hamcrest.MatcherAssert.assertThat",
+      "org.hamcrest.Matchers.*",
+      "org.hamcrest.CoreMatchers.*",
+      "org.junit.jupiter.api.Assertions.*",
+      "java.util.Objects.requireNonNull",
+      "java.util.Objects.requireNonNullElse",
+      "org.mockito.Mockito.*",
+    },
   },
 
   -- Language server `initializationOptions`

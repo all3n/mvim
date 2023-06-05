@@ -10,7 +10,9 @@ save=2
 
 [file-run]
 command="$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-command:c,cpp="$(VIM_PATHNOEXT)"
+command:java=bash java.sh $(VIM_FILENAME)
+command:c=bash c.sh $(VIM_FILENAME)
+command:cpp=bash cpp.sh $(VIM_FILENAME)
 command:go="$(VIM_PATHNOEXT)"
 command:python=bash python.sh "$(VIM_FILENAME)"
 command:javascript=node "$(VIM_FILENAME)"
