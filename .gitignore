@@ -50,3 +50,4 @@ conf/nvim/plugin/packer_compiled.lua
 conf/TabNine
 conf/pulse
 /test
+conf/github-copilot/
