@@ -1,5 +1,4 @@
-cmp = require("copilot_cmp")
-cmp.setup {
+require("copilot_cmp").setup({
   sources = {
     -- Copilot Source
     { name = "copilot", group_index = 2 },
@@ -8,4 +7,4 @@ cmp.setup {
     { name = "path", group_index = 2 },
     { name = "luasnip", group_index = 2 },
   },
-}
+})

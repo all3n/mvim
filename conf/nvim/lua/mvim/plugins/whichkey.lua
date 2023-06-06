@@ -200,6 +200,10 @@ local mappings = {
       b = { "<cmd>AsyncTask project-build<cr>", "task:project:build" },
       r = { "<cmd>AsyncTask project-run<cr>", "task:project:run" },
     }
+  },
+  m = {
+    name = "+MVIM",
+    c = {"<cmd>e $MYVIMRC<cr>", "MVIM Configuration"}
   }
 }
 
