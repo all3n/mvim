@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(int argc, char * argv[]){
-  std::cout << "hello world" << std::endl;
+  std::cout << "123";
   return 0;
 }
 
