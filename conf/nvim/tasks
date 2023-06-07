@@ -1,18 +1,12 @@
 # vim: set fenc=utf-8 ft=dosini:
 [file-build]
-command=g++ "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-command:cpp=g++ "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-command:c=gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
-command:go=go build -o "$(VIM_PATHNOEXT)" "$(VIM_FILEPATH)"
-command:make=make -f "$(VIM_FILEPATH)"
+command=bash build.sh "$(VIM_FILEPATH)"
 cwd=$(VIM_FILEDIR)
 save=2
 
 [file-run]
-command="$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+command=bash run.sh $(VIM_FILEPATH)
 command:java=bash java.sh $(VIM_FILENAME)
-command:c=bash c.sh $(VIM_FILENAME)
-command:cpp=bash cpp.sh $(VIM_FILENAME)
 command:go="$(VIM_PATHNOEXT)"
 command:python=bash python.sh "$(VIM_FILENAME)"
 command:javascript=node "$(VIM_FILENAME)"

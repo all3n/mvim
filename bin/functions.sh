@@ -42,3 +42,24 @@ function get_temp_dir() {
     trap "rm -rf $temp_file_path" EXIT
     echo $temp_file_path
 }
+
+function find_root(){
+   dir=$(realpath $1)
+   while [[ "$dir" != "/" ]]; do
+       if [[ -e "$dir/.root" ]] || [[ -e "$dir/.project" ]] || [[ -d "$dir/.git" ]] || [[ -e "$dir/.hg" ]]; then
+           echo "$dir"
+           return 
+       fi
+       dir=$(dirname "$dir")
+   done
+}
+
+
+function find_exec(){
+  dir=$1
+  for file in "$dir"/*; do
+    if [[ -x "$file" && -f "$file" ]]; then
+        EXEC_LIST+=("$file")
+    fi
+  done
+}
