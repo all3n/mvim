@@ -1,8 +1,12 @@
 local util = require 'lspconfig.util'
+local os_util = require 'mvim.utils.os_utils'
 local env = {
   HOME = vim.loop.os_homedir(),
   JDTLS_HOME = os.getenv 'JDTLS_HOME',
   JAVA_HOME = os.getenv 'JAVA_HOME',
+  JDK8_HOME = os_util.get_env('JDK8_HOME', '/opt/jdk-8'),
+  JDK13_HOME = os_util.get_env('JDK13_HOME', '/opt/jdk-13'),
+  JDK17_HOME = os_util.get_env('JDK17_HOME', '/opt/jdk-17'),
   XDG_CACHE_HOME = os.getenv 'XDG_CACHE_HOME',
   JDTLS_JVM_ARGS = os.getenv 'JDTLS_JVM_ARGS',
   JAVA_DEBUG = os.getenv 'JAVA_DEBUG',
@@ -124,9 +128,9 @@ local config = {
       configuration = {
         updateBuildConfiguration = "interactive",
         runtimes = {
-          {name = "JavaSE-1.8", path= "/opt/jdk-8"},
-          {name = "JavaSE-13", path= "/opt/jdk-13"},
-          {name = "JavaSE-17", path= "/opt/jdk-17"}
+          {name = "JavaSE-1.8", path= env.JDK8_HOME},
+          {name = "JavaSE-13", path= env.JDK13_HOME},
+          {name = "JavaSE-17", path= env.JDK17_HOME}
         }
       }
     }
