@@ -9,6 +9,8 @@ exec_dir(){
   find_exec $1
   EXEC_NUM=${#EXEC_LIST[@]}
   if [[ $EXEC_NUM -eq 1 ]];then
+    echo "BIN:$EXEC_LIST"
+    echo "------------------------------------------------"
     $EXEC_LIST
   else
     for idx in `seq 0 $(( EXEC_NUM -1 ))`;do
@@ -17,11 +19,10 @@ exec_dir(){
     echo "input index:"
     read INDEX
     EXEC=${EXEC_LIST[$INDEX]}
-    echo "$EXEC"
+    echo "BIN:$EXEC"
+    echo "------------------------------------------------"
     $EXEC
   fi
-  echo "------------------------------------------------"
-  $EXEC_FILE
 }
 
 

@@ -7,6 +7,13 @@ function get_os(){
         echo "LINUX"
     fi
 }
+function get_nproc(){
+    if [[ "$(get_os)" == "MAC" ]];then
+        echo "$(sysctl -n hw.ncpu)"
+    elif [[ "$(get_os)" == "LINUX" ]];then
+        echo "$(nproc)"
+    fi
+}
 
 function get_nvim(){
     echo "$NVIM_BIN"
@@ -44,7 +51,7 @@ function get_temp_dir() {
 }
 
 function find_root(){
-   dir=$(realpath $1)
+  dir=$(get_real_path $1)
    while [[ "$dir" != "/" ]]; do
        if [[ -e "$dir/.root" ]] || [[ -e "$dir/.project" ]] || [[ -d "$dir/.git" ]] || [[ -e "$dir/.hg" ]]; then
            echo "$dir"

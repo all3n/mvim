@@ -1,5 +1,6 @@
+. $MVIM_HOME/bin/task-init.sh
 BUILD=$ROOT/build
 mkdir -p $BUILD
 cd $BUILD
 cmake ..
-make -j$(nproc)
+make -j$(get_nproc)
