@@ -20,6 +20,7 @@ local function on_attach(bufnr)
     -- vim.keymap.set('n', 'x', api.tree.close, opts('Close'))
 end
 
+-- https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
 nvim_tree.setup {
   filters = {
     dotfiles = true
@@ -29,6 +30,7 @@ nvim_tree.setup {
     update_cwd = true,
   },
   renderer = {
+    group_empty = true,
     root_folder_modifier = ":t",
     icons = {
       glyphs = {
