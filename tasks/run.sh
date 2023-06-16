@@ -1,7 +1,9 @@
 . $MVIM_HOME/bin/task-init.sh
 export ROOT=$(find_root $VIM_FILEDIR)
 cd $ROOT
-echo "ROOT:$ROOT"
+if [[ -n "$ROOT" ]];then
+  echo "ROOT:$ROOT"
+fi
 
 
 export EXEC_LIST=()
@@ -31,5 +33,10 @@ if [[ -f $ROOT/CMakeLists.txt ]];then
 elif [[ -f $ROOT/Makefile ]] || [[ -f $ROOT/makefile ]];then
   exec_dir $ROOT
 else
-  bash cpp.sh $VIM_FILEPATH
+  EXT=${VIM_FILEPATH##*.}
+  if [[ "$EXT" == "cpp" ]] || [[ "$EXP" == "cc" ]];then
+    bash cpp.sh $VIM_FILEPATH
+  elif [[ "$EXT" == "c" ]];then
+    bash c.sh $VIM_FILEPATH
+  fi
 fi

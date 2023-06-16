@@ -70,3 +70,10 @@ function find_exec(){
     fi
   done
 }
+
+
+function get_sources(){
+  local script_dir=$(cd $(dirname $(get_real_path $1));pwd)
+  local sources=$(grep -Eo 'src/.*\.(cpp|c|cc|c')
+  echo $sources
+}
